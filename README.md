@@ -1,208 +1,112 @@
-\# 🤖 Bot Absensi Telegram
-
-
-
+🤖 Bot Absensi Telegram
 Bot Telegram multifungsi yang dirancang untuk mengelola absensi karyawan secara real-time, lengkap dengan fitur manajemen, pelaporan, dan sistem persetujuan.
 
+✨ Fitur
+Absensi Masuk & Pulang: Karyawan dapat melakukan absensi dengan mengirimkan foto selfie dan lokasi.
 
+Geofencing (Radius Absensi): Membatasi area absensi hanya dalam jarak tertentu dari lokasi kantor.
 
----
+Notifikasi Real-time: Admin menerima notifikasi lengkap (termasuk foto dan peta lokasi) setiap kali ada karyawan yang absen.
 
+Manajemen Karyawan:
 
+Tambah karyawan baru.
 
-\## ✨ Fitur
+Aktifkan & Nonaktifkan akun karyawan.
 
+Hapus data karyawan secara permanen.
 
+Sistem Pengajuan: Alur untuk pengajuan Izin dan Kasbon dengan sistem persetujuan (approve/reject) oleh admin.
 
-\-   \*\*Absensi Masuk \& Pulang\*\*: Karyawan dapat melakukan absensi dengan mengirimkan foto selfie dan lokasi.
+Broadcast: Admin dapat mengirim pesan pengumuman (teks atau foto dengan caption) ke semua karyawan aktif.
 
-\-   \*\*Geofencing (Radius Absensi)\*\*: Membatasi area absensi hanya dalam jarak tertentu dari lokasi kantor.
+Laporan Otomatis: Laporan absensi harian, mingguan, dan bulanan.
 
-\-   \*\*Notifikasi Real-time\*\*: Admin menerima notifikasi lengkap (termasuk foto dan peta lokasi) setiap kali ada karyawan yang absen.
+Pengaturan Dinamis: Admin dapat mengubah pengaturan seperti status dan jarak radius absensi langsung dari bot.
 
-\-   \*\*Manajemen Karyawan\*\*:
+Struktur Modular: Kode dipecah menjadi beberapa file untuk kemudahan pengelolaan dan pengembangan lebih lanjut.
 
-&nbsp;   -   Tambah karyawan baru.
-
-&nbsp;   -   Aktifkan \& Nonaktifkan akun karyawan.
-
-&nbsp;   -   Hapus data karyawan secara permanen.
-
-\-   \*\*Sistem Pengajuan\*\*: Alur untuk pengajuan Izin dan Kasbon dengan sistem persetujuan (approve/reject) oleh admin.
-
-\-   \*\*Broadcast\*\*: Admin dapat mengirim pesan pengumuman (teks atau foto dengan caption) ke semua karyawan aktif.
-
-\-   \*\*Laporan Otomatis\*\*: Laporan absensi harian, mingguan, dan bulanan.
-
-\-   \*\*Pengaturan Dinamis\*\*: Admin dapat mengubah pengaturan seperti status dan jarak radius absensi langsung dari bot.
-
-\-   \*\*Struktur Modular\*\*: Kode dipecah menjadi beberapa file untuk kemudahan pengelolaan dan pengembangan lebih lanjut.
-
-
-
----
-
-
-
-\## 📁 Struktur Folder Proyek
-
-
-
+📁 Struktur Folder Proyek
 Pastikan semua file berada di lokasi yang benar sesuai struktur di bawah ini.
 
-
-
 AbsensiBot/
-
-├──  handlers/
-
-│   ├── init.py
-
-│   ├── admin.py
-
-│   ├── karyawan.py
-
-│   └── common.py
-
-│
-
 ├── .env
-
 ├── bot.py
-
 ├── config.py
-
 ├── database.py
-
 ├── requirements.txt
+├── setup.py
+└── handlers/
+    ├── __init__.py
+    ├── admin.py
+    ├── common.py
+    └── karyawan.py
 
-└── setup.py
-
-
-
----
-
-
-
-\## ⚙️ Cara Setup
-
-
-
+⚙️ Cara Setup
 Ikuti langkah-langkah berikut untuk menjalankan bot dari awal.
 
+1. Pra-syarat
+Python 3.9+ terinstal di komputer Anda.
 
+Memiliki akses ke Terminal atau Command Prompt.
 
-\### 1. Pra-syarat
+2. Siapkan Kode
+Salin semua kode dari tutorial ini ke dalam file yang sesuai di folder AbsensiBot/.
 
-\-   \*\*Python 3.9+\*\* terinstal di komputer Anda.
+3. Lingkungan Python & Instalasi
+Sangat disarankan menggunakan virtual environment.
 
-\-   Memiliki akses ke \*\*Terminal\*\* atau \*\*Command Prompt\*\*.
+Buka terminal, lalu masuk ke folder AbsensiBot/.
 
+Buat virtual environment:
 
+python -m venv venv
 
-\### 2. Siapkan Kode
+Aktifkan virtual environment:
 
-\-   Salin semua kode dari tutorial ini ke dalam file yang sesuai di folder `AbsensiBot/`.
+Windows: .\venv\Scripts\activate
 
+macOS / Linux: source venv/bin/activate
 
+Instal semua library yang dibutuhkan:
 
-\### 3. Lingkungan Python \& Instalasi
+pip install -r requirements.txt
 
-Sangat disarankan menggunakan \*virtual environment\*.
+4. Dapatkan Token Bot & ID Admin
+Token Bot:
 
+Buka Telegram, cari @BotFather.
 
+Kirim /newbot dan ikuti instruksi untuk membuat bot baru.
 
-1\.  Buka terminal, masuk ke folder `AbsensiBot/`.
+Salin token API yang diberikan.
 
-2\.  Buat virtual environment:
+ID Admin:
 
-&nbsp;   ```bash
+Buka Telegram, cari @userinfobot.
 
-&nbsp;   python -m venv venv
+Kirim /start, dan bot tersebut akan memberikan User ID Anda. Salin ID tersebut.
 
-&nbsp;   ```
+5. Konfigurasi File .env
+Di dalam folder AbsensiBot/, buat file baru bernama .env.
 
-3\.  Aktifkan:
+Isi file tersebut dengan format berikut, ganti dengan data Anda:
 
-&nbsp;   -   \*\*Windows\*\*: `.\\venv\\Scripts\\activate`
+TELEGRAM_TOKEN=123456:ABC-DEF1234ghIkl-zyx57W2v1u123456
+ADMIN_IDS=111222333
 
-&nbsp;   -   \*\*macOS / Linux\*\*: `source venv/bin/activate`
+TELEGRAM_TOKEN: Ganti dengan token dari BotFather.
 
-4\.  Instal semua library yang dibutuhkan:
+ADMIN_IDS: Ganti dengan User ID Anda. Jika admin lebih dari satu, pisahkan dengan koma (contoh: 111222333,444555666).
 
-&nbsp;   ```bash
-
-&nbsp;   pip install -r requirements.txt
-
-&nbsp;   ```
-
-
-
-\### 4. Dapatkan Token Bot \& ID Admin
-
-1\.  \*\*Token Bot\*\*:
-
-&nbsp;   -   Buka Telegram, cari \*\*@BotFather\*\*.
-
-&nbsp;   -   Kirim `/newbot` dan ikuti instruksi untuk membuat bot baru.
-
-&nbsp;   -   Salin \*\*token API\*\* yang diberikan.
-
-2\.  \*\*ID Admin\*\*:
-
-&nbsp;   -   Buka Telegram, cari \*\*@userinfobot\*\*.
-
-&nbsp;   -   Kirim `/start`, dan bot tersebut akan memberikan User ID Anda. Salin ID tersebut.
-
-
-
-\### 5. Konfigurasi File `.env`
-
-1\.  Di folder `AbsensiBot/`, buat file baru bernama `.env`.
-
-2\.  Isi file tersebut dengan format berikut:
-
-
-
-&nbsp;   ```env
-
-&nbsp;   TELEGRAM\_TOKEN=123456:ABC-DEF1234ghIkl-zyx57W2v1u123456
-
-&nbsp;   ADMIN\_IDS=111222333
-
-&nbsp;   ```
-
-
-
-3\.  Ganti isinya:
-
-&nbsp;   -   `TELEGRAM\_TOKEN`: Ganti dengan token dari BotFather.
-
-&nbsp;   -   `ADMIN\_IDS`: Ganti dengan User ID Anda. Jika admin lebih dari satu, pisahkan dengan koma (contoh: `111222333,444555666`).
-
-
-
-\### 6. Setup Database
-
-Jalankan perintah ini \*\*sekali saja\*\* untuk membuat file `absensi.db` dan tabel-tabel di dalamnya.
-
-
-
-```bash
+6. Setup Database
+Jalankan perintah ini sekali saja untuk membuat file absensi.db dan tabel-tabel di dalamnya.
 
 python setup.py
 
-### 7. Jalankan Bot
-
+7. Jalankan Bot
 Ini adalah langkah terakhir untuk menghidupkan bot Anda.
-
-
-
-```bash
 
 python bot.py
 
-
-
 Jika berhasil, akan muncul log Bot Absensi Dijalankan... di terminal Anda. Bot siap digunakan.
-
